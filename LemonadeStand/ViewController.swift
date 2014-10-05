@@ -10,6 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let kLemonCost = 2
+    let kIceCubeCost = 1
+    
     // Inventory
     var money = 10
     var lemons = 1
@@ -48,15 +51,55 @@ extension ViewController {
     // MARK: IBActions
     
     @IBAction func purchaseLemonsPressed(sender: UIButton) {
+        if sender.titleLabel!.text == "-" && purchaseLemons > 0 && lemons > 0{
+            purchaseLemons--
+            money += kLemonCost
+            lemons--
+        }
+        else if sender.titleLabel!.text == "+" && money >= kLemonCost {
+            purchaseLemons++
+            money -= kLemonCost
+            lemons++
+        }
+        setupView()
     }
 
     @IBAction func purchaseIceCubesPressed(sender: UIButton) {
+        if sender.titleLabel!.text == "-" && purchaseIceCubes > 0 && iceCubes > 0 {
+            purchaseIceCubes--
+            money += kIceCubeCost
+            iceCubes--
+        }
+        else if sender.titleLabel!.text == "+" && money >= kIceCubeCost {
+            purchaseIceCubes++
+            money -= kIceCubeCost
+            iceCubes++
+        }
+        setupView()
     }
     
     @IBAction func mixLemonsPressed(sender: UIButton) {
+        if sender.titleLabel!.text == "-" && mixLemons > 0 {
+            mixLemons--
+            lemons++
+        }
+        else if sender.titleLabel!.text == "+" && lemons > 0 {
+            mixLemons++
+            lemons--
+        }
+        setupView()
     }
     
     @IBAction func mixIceCubesPressed(sender: UIButton) {
+        if sender.titleLabel!.text == "-" && mixIceCubes > 0 {
+            mixIceCubes--
+            iceCubes++
+        }
+        else if sender.titleLabel!.text == "+" && iceCubes > 0 {
+            mixIceCubes++
+            iceCubes--
+        }
+        setupView()
     }
     
     @IBAction func startDayButtonPressed(sender: AnyObject) {
