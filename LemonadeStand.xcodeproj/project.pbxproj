@@ -15,6 +15,7 @@
 		D6A8B83419E1857E00658C51 /* LemonadeStandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A8B83319E1857E00658C51 /* LemonadeStandTests.swift */; };
 		D6A8B84019E19A3D00658C51 /* Lemonade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A8B83F19E19A3D00658C51 /* Lemonade.swift */; };
 		D6A8B84219E19C5200658C51 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A8B84119E19C5200658C51 /* Customer.swift */; };
+		D6A8B84419E1A08C00658C51 /* LemonadeDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A8B84319E1A08C00658C51 /* LemonadeDay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		D6A8B83319E1857E00658C51 /* LemonadeStandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemonadeStandTests.swift; sourceTree = "<group>"; };
 		D6A8B83F19E19A3D00658C51 /* Lemonade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lemonade.swift; sourceTree = "<group>"; };
 		D6A8B84119E19C5200658C51 /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		D6A8B84319E1A08C00658C51 /* LemonadeDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LemonadeDay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				D6A8B81F19E1857E00658C51 /* ViewController.swift */,
 				D6A8B83F19E19A3D00658C51 /* Lemonade.swift */,
 				D6A8B84119E19C5200658C51 /* Customer.swift */,
+				D6A8B84319E1A08C00658C51 /* LemonadeDay.swift */,
 				D6A8B82119E1857E00658C51 /* Main.storyboard */,
 				D6A8B82419E1857E00658C51 /* Images.xcassets */,
 				D6A8B82619E1857E00658C51 /* LaunchScreen.xib */,
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6A8B84419E1A08C00658C51 /* LemonadeDay.swift in Sources */,
 				D6A8B82019E1857E00658C51 /* ViewController.swift in Sources */,
 				D6A8B81E19E1857E00658C51 /* AppDelegate.swift in Sources */,
 				D6A8B84019E19A3D00658C51 /* Lemonade.swift in Sources */,
