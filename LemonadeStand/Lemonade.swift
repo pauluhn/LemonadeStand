@@ -13,6 +13,11 @@ struct Lemonade {
     var iceCubes = 0
     
     func ratio() -> Float {
-        return Float(lemons) / Float(iceCubes)
+        if iceCubes == 0 {
+            return Float(lemons + 1)
+        }
+        else {
+            return Float(lemons) / Float(iceCubes)
+        }
     }
 }

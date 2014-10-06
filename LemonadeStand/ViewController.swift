@@ -36,8 +36,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupView()
+        hardReset()
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,12 +102,44 @@ extension ViewController {
     }
     
     @IBAction func startDayButtonPressed(sender: AnyObject) {
+        if mixLemons > 0 {
+            var lemonade = Lemonade(lemons: mixLemons, iceCubes: mixIceCubes)
+            var sales = LemonadeDay().sales(lemonade)
+            money += sales
+            
+            if money >= kLemonCost || lemons > 0 {
+                var alertController = UIAlertController(title: "Today's Sales", message: "You made $\(sales)", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
+                self.presentViewController(alertController, animated: true, completion:nil)
+                self.reset()
+            } else {
+                var alertController = UIAlertController(title: "Game Over", message: "You made $\(sales) but you don't have enough money to make tomorrow's lemonade", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
+                self.presentViewController(alertController, animated: true, completion:nil)
+                self.hardReset()
+            }
+        }
     }
 }
 
 extension ViewController {
     
     // MARK: Helpers
+    
+    func hardReset() {
+        money = 10
+        lemons = 1
+        iceCubes = 1
+        reset()
+    }
+    
+    func reset() {
+        purchaseLemons = 0
+        purchaseIceCubes = 0
+        mixLemons = 0
+        mixIceCubes = 0
+        setupView()
+    }
     
     func setupView() {
         moneyLabel.text = "$\(money)"
