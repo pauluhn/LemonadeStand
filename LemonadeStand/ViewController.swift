@@ -35,6 +35,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var mixLemonsLabel: UILabel!
     @IBOutlet weak var mixIceCubesLabel: UILabel!
 
+    // Score
+    var currentScore = 1
+    var highScore = NSUserDefaults.standardUserDefaults().integerForKey("highScore")
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var highScoreLabel: UILabel!
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,9 +119,11 @@ extension ViewController {
             money += sales
             
             if money >= kLemonCost || lemons > 0 {
-                var alertController = UIAlertController(title: "Today's Sales", message: "You made $\(sales)", preferredStyle: UIAlertControllerStyle.Alert)
+                var alertController = UIAlertController(title: "Today's Sales", message: "You made $\(sales) on day \(currentScore)", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
                 self.presentViewController(alertController, animated: true, completion:nil)
+                currentScore++
+                checkHighScore()
                 self.reset()
             } else {
                 var alertController = UIAlertController(title: "Game Over", message: "You made $\(sales) but you don't have enough money to make tomorrow's lemonade", preferredStyle: UIAlertControllerStyle.Alert)
@@ -120,6 +131,14 @@ extension ViewController {
                 self.presentViewController(alertController, animated: true, completion:nil)
                 self.hardReset()
             }
+        }
+    }
+    
+    func checkHighScore() {
+        if currentScore > highScore {
+            highScore = currentScore
+            NSUserDefaults.standardUserDefaults().setInteger(highScore, forKey: "highScore")
+            NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
 }
@@ -132,6 +151,7 @@ extension ViewController {
         money = 10
         lemons = 1
         iceCubes = 1
+        currentScore = 1
         reset()
     }
     
@@ -145,6 +165,9 @@ extension ViewController {
     }
     
     func setupView() {
+        scoreLabel.text = "\(currentScore)"
+        highScoreLabel.text = "\(highScore)"
+        
         moneyLabel.text = "$\(money)"
         lemonsLabel.text = "\(lemons)"
         iceCubesLabel.text = "\(iceCubes)"
