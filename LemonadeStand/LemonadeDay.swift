@@ -12,9 +12,9 @@ class LemonadeDay {
     
     var customers:[Customer] = []
     
-    func sales(lemonade:Lemonade) -> Int {
+    func sales(lemonade:Lemonade, weatherType:Int) -> Int {
         var money = 0
-        setupCustomers()
+        setupCustomers(weatherType)
         for customer in customers {
             if customerType(customer) == lemonadeType(lemonade) {
                 money += 1
@@ -26,12 +26,30 @@ class LemonadeDay {
         return money
     }
     
-    func setupCustomers() {
-        let totalCustomers = Int(arc4random_uniform(10)) + 1
+    func setupCustomers(weatherType:Int) {
+        let totalCustomers = getTotalCustomers(weatherType)
         for var customerNumber = 0; customerNumber < totalCustomers; customerNumber++ {
             var customer = Customer()
             customer.setupTaste()
             customers.append(customer)
+        }
+    }
+    
+    func getTotalCustomers(weatherType:Int) -> Int {
+        var totalCustomers = Int(arc4random_uniform(10))
+        switch weatherType {
+        case 0:
+            totalCustomers += 5
+        case 2:
+            totalCustomers -= 2
+        default:
+            totalCustomers++
+        }
+        
+        if totalCustomers > 0 {
+            return totalCustomers
+        } else {
+            return 1
         }
     }
     

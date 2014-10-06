@@ -17,9 +17,11 @@ class ViewController: UIViewController {
     var money = 10
     var lemons = 1
     var iceCubes = 1
+    var weather = Weather().setupWeather()
     @IBOutlet weak var moneyLabel: UILabel!
     @IBOutlet weak var lemonsLabel: UILabel!
     @IBOutlet weak var iceCubesLabel: UILabel!
+    @IBOutlet weak var weatherImageView: UIImageView!
     
     // Purchase
     var purchaseLemons = 0
@@ -104,7 +106,7 @@ extension ViewController {
     @IBAction func startDayButtonPressed(sender: AnyObject) {
         if mixLemons > 0 {
             var lemonade = Lemonade(lemons: mixLemons, iceCubes: mixIceCubes)
-            var sales = LemonadeDay().sales(lemonade)
+            var sales = LemonadeDay().sales(lemonade, weatherType: weather.type)
             money += sales
             
             if money >= kLemonCost || lemons > 0 {
@@ -134,6 +136,7 @@ extension ViewController {
     }
     
     func reset() {
+        weather = Weather().setupWeather()
         purchaseLemons = 0
         purchaseIceCubes = 0
         mixLemons = 0
@@ -145,6 +148,7 @@ extension ViewController {
         moneyLabel.text = "$\(money)"
         lemonsLabel.text = "\(lemons)"
         iceCubesLabel.text = "\(iceCubes)"
+        weatherImageView.image = weather.image
         
         purchaseLemonsLabel.text = "\(purchaseLemons)"
         purchaseIceCubesLabel.text = "\(purchaseIceCubes)"
