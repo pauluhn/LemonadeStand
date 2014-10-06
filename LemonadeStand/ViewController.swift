@@ -14,9 +14,7 @@ class ViewController: UIViewController {
     let kIceCubeCost = 1
     
     // Inventory
-    var money = 10
-    var lemons = 1
-    var iceCubes = 1
+    var supplies = Supplies()
     var weather = Weather().setupWeather()
     @IBOutlet weak var moneyLabel: UILabel!
     @IBOutlet weak var lemonsLabel: UILabel!
@@ -61,29 +59,29 @@ extension ViewController {
     // MARK: IBActions
     
     @IBAction func purchaseLemonsPressed(sender: UIButton) {
-        if sender.titleLabel!.text == "-" && purchaseLemons > 0 && lemons > 0{
+        if sender.titleLabel!.text == "-" && purchaseLemons > 0 && supplies.lemons > 0{
             purchaseLemons--
-            money += kLemonCost
-            lemons--
+            supplies.money += kLemonCost
+            supplies.lemons--
         }
-        else if sender.titleLabel!.text == "+" && money >= kLemonCost {
+        else if sender.titleLabel!.text == "+" && supplies.money >= kLemonCost {
             purchaseLemons++
-            money -= kLemonCost
-            lemons++
+            supplies.money -= kLemonCost
+            supplies.lemons++
         }
         setupView()
     }
 
     @IBAction func purchaseIceCubesPressed(sender: UIButton) {
-        if sender.titleLabel!.text == "-" && purchaseIceCubes > 0 && iceCubes > 0 {
+        if sender.titleLabel!.text == "-" && purchaseIceCubes > 0 && supplies.iceCubes > 0 {
             purchaseIceCubes--
-            money += kIceCubeCost
-            iceCubes--
+            supplies.money += kIceCubeCost
+            supplies.iceCubes--
         }
-        else if sender.titleLabel!.text == "+" && money >= kIceCubeCost {
+        else if sender.titleLabel!.text == "+" && supplies.money >= kIceCubeCost {
             purchaseIceCubes++
-            money -= kIceCubeCost
-            iceCubes++
+            supplies.money -= kIceCubeCost
+            supplies.iceCubes++
         }
         setupView()
     }
@@ -91,11 +89,11 @@ extension ViewController {
     @IBAction func mixLemonsPressed(sender: UIButton) {
         if sender.titleLabel!.text == "-" && mixLemons > 0 {
             mixLemons--
-            lemons++
+            supplies.lemons++
         }
-        else if sender.titleLabel!.text == "+" && lemons > 0 {
+        else if sender.titleLabel!.text == "+" && supplies.lemons > 0 {
             mixLemons++
-            lemons--
+            supplies.lemons--
         }
         setupView()
     }
@@ -103,11 +101,11 @@ extension ViewController {
     @IBAction func mixIceCubesPressed(sender: UIButton) {
         if sender.titleLabel!.text == "-" && mixIceCubes > 0 {
             mixIceCubes--
-            iceCubes++
+            supplies.iceCubes++
         }
-        else if sender.titleLabel!.text == "+" && iceCubes > 0 {
+        else if sender.titleLabel!.text == "+" && supplies.iceCubes > 0 {
             mixIceCubes++
-            iceCubes--
+            supplies.iceCubes--
         }
         setupView()
     }
@@ -116,9 +114,9 @@ extension ViewController {
         if mixLemons > 0 {
             var lemonade = Lemonade(lemons: mixLemons, iceCubes: mixIceCubes)
             var sales = LemonadeDay().sales(lemonade, weatherType: weather.type)
-            money += sales
+            supplies.money += sales
             
-            if money >= kLemonCost || lemons > 0 {
+            if supplies.money >= kLemonCost || supplies.lemons > 0 {
                 var alertController = UIAlertController(title: "Today's Sales", message: "You made $\(sales) on day \(currentScore)", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
                 self.presentViewController(alertController, animated: true, completion:nil)
@@ -148,9 +146,7 @@ extension ViewController {
     // MARK: Helpers
     
     func hardReset() {
-        money = 10
-        lemons = 1
-        iceCubes = 1
+        supplies = Supplies()
         currentScore = 1
         reset()
     }
@@ -168,9 +164,9 @@ extension ViewController {
         scoreLabel.text = "\(currentScore)"
         highScoreLabel.text = "\(highScore)"
         
-        moneyLabel.text = "$\(money)"
-        lemonsLabel.text = "\(lemons)"
-        iceCubesLabel.text = "\(iceCubes)"
+        moneyLabel.text = "$\(supplies.money)"
+        lemonsLabel.text = "\(supplies.lemons)"
+        iceCubesLabel.text = "\(supplies.iceCubes)"
         weatherImageView.image = weather.image
         
         purchaseLemonsLabel.text = "\(purchaseLemons)"
