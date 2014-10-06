@@ -18,6 +18,7 @@
 		D6A8B84419E1A08C00658C51 /* LemonadeDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A8B84319E1A08C00658C51 /* LemonadeDay.swift */; };
 		D6A8B84619E2C2F000658C51 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A8B84519E2C2F000658C51 /* Weather.swift */; };
 		D6A8B84819E2CEEB00658C51 /* Supplies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A8B84719E2CEEB00658C51 /* Supplies.swift */; };
+		D6A8B84A19E2D12200658C51 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A8B84919E2D12200658C51 /* Price.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		D6A8B84319E1A08C00658C51 /* LemonadeDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LemonadeDay.swift; sourceTree = "<group>"; };
 		D6A8B84519E2C2F000658C51 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		D6A8B84719E2CEEB00658C51 /* Supplies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supplies.swift; sourceTree = "<group>"; };
+		D6A8B84919E2D12200658C51 /* Price.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				D6A8B81F19E1857E00658C51 /* ViewController.swift */,
 				D6A8B83F19E19A3D00658C51 /* Lemonade.swift */,
 				D6A8B84719E2CEEB00658C51 /* Supplies.swift */,
+				D6A8B84919E2D12200658C51 /* Price.swift */,
 				D6A8B84119E19C5200658C51 /* Customer.swift */,
 				D6A8B84319E1A08C00658C51 /* LemonadeDay.swift */,
 				D6A8B84519E2C2F000658C51 /* Weather.swift */,
@@ -228,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6A8B84419E1A08C00658C51 /* LemonadeDay.swift in Sources */,
+				D6A8B84A19E2D12200658C51 /* Price.swift in Sources */,
 				D6A8B82019E1857E00658C51 /* ViewController.swift in Sources */,
 				D6A8B84819E2CEEB00658C51 /* Supplies.swift in Sources */,
 				D6A8B81E19E1857E00658C51 /* AppDelegate.swift in Sources */,

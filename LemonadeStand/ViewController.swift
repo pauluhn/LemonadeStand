@@ -10,9 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let kLemonCost = 2
-    let kIceCubeCost = 1
-    
     // Inventory
     var supplies = Supplies()
     var weather = Weather().setupWeather()
@@ -22,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var weatherImageView: UIImageView!
     
     // Purchase
+    var price = Price()
     var purchaseLemons = 0
     var purchaseIceCubes = 0
     @IBOutlet weak var purchaseLemonsLabel: UILabel!
@@ -61,12 +59,12 @@ extension ViewController {
     @IBAction func purchaseLemonsPressed(sender: UIButton) {
         if sender.titleLabel!.text == "-" && purchaseLemons > 0 && supplies.lemons > 0{
             purchaseLemons--
-            supplies.money += kLemonCost
+            supplies.money += price.lemon
             supplies.lemons--
         }
-        else if sender.titleLabel!.text == "+" && supplies.money >= kLemonCost {
+        else if sender.titleLabel!.text == "+" && supplies.money >= price.lemon {
             purchaseLemons++
-            supplies.money -= kLemonCost
+            supplies.money -= price.lemon
             supplies.lemons++
         }
         setupView()
@@ -75,12 +73,12 @@ extension ViewController {
     @IBAction func purchaseIceCubesPressed(sender: UIButton) {
         if sender.titleLabel!.text == "-" && purchaseIceCubes > 0 && supplies.iceCubes > 0 {
             purchaseIceCubes--
-            supplies.money += kIceCubeCost
+            supplies.money += price.iceCube
             supplies.iceCubes--
         }
-        else if sender.titleLabel!.text == "+" && supplies.money >= kIceCubeCost {
+        else if sender.titleLabel!.text == "+" && supplies.money >= price.iceCube {
             purchaseIceCubes++
-            supplies.money -= kIceCubeCost
+            supplies.money -= price.iceCube
             supplies.iceCubes++
         }
         setupView()
@@ -116,7 +114,7 @@ extension ViewController {
             var sales = LemonadeDay().sales(lemonade, weatherType: weather.type)
             supplies.money += sales
             
-            if supplies.money >= kLemonCost || supplies.lemons > 0 {
+            if supplies.money >= price.lemon || supplies.lemons > 0 {
                 var alertController = UIAlertController(title: "Today's Sales", message: "You made $\(sales) on day \(currentScore)", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
                 self.presentViewController(alertController, animated: true, completion:nil)
